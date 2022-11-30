@@ -4,7 +4,9 @@
 
 This profile is based on "Generic ASA".
 
-File: [PolyLite ASA.json](PolyLite%20ASA.json)
+Profile: [PolyLite ASA.json](PolyLite%20ASA.json)
+
+Test print: [PolyLite ASA.jpg](PolyLite%20ASA.jpg)
 
 ### Differences
 

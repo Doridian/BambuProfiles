@@ -1,6 +1,6 @@
 from subprocess import check_call
 from os import mkdir, listdir
-from os.path import isdir
+from os.path import isdir, splitext, exists
 from shutil import rmtree
 from json import load as json_load
 from dataclasses import dataclass
@@ -38,6 +38,12 @@ class RepoProfile:
 
         self.folder = folder
         self.file = file
+
+        preview_file = f"{splitext(file)[0]}.jpg"
+        if exists(f"{self.folder}/{preview_file}"):
+            self.preview = preview_file
+        else:
+            self.preview = None
 
         with open(f"{self.folder}/{self.file}", "rb") as f:
             self.data = json_load(f)
@@ -116,11 +122,15 @@ def build_profile_view(profile: RepoProfile) -> str:
     diffs = compare_profile_to_base(profile)
     diff_table = "\n".join([format_diff(diff) for diff in diffs])
 
+    test_print_link = f"[{profile.preview}]({url_quote(profile.preview)})" if profile.preview else "N/A"
+
     return f"""## {profile.name}
 
 This profile is based on "{profile.base}".
 
-File: [{profile.file}]({url_quote(profile.file)})
+Profile: [{profile.file}]({url_quote(profile.file)})
+
+Test print: {test_print_link}
 
 ### Differences
 
