@@ -20,3 +20,9 @@ Then, in the Bambu Studio menu, select `File -> Export -> Export presets..` and 
 Download the file from this GitHub or another source.
 
 Then, in the Bambu Studio menu, select `File -> Import -> Import presets...` and pick the file.
+
+## Submission guidelines
+
+Please try to submit all profiles with a test print (preferrably a Benchy) with **default settings** other than the applied profile.
+
+This file should be submitting alongside your `.json` profile as a `.jpg`, so, for example, if you submit `PolyLite ASA.json` as a profile, you should also submit `PolyLite ASA.jpg` with your test print.
