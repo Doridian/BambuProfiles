@@ -2,6 +2,13 @@ PROFILE_TRANSLATIONS = {
 
 }
 
+PROFILE_VALUE_DEFAULTS = {
+    "additional_cooling_fan_speed": ["0"],
+    "bed_temperature_difference": ["10"],
+    "enable_overhang_bridge_fan": ["1"],
+    "filament_is_support": ["0"],
+}
+
 PROFILE_IGNORE_KEYS = set([
     "name",
     "from",

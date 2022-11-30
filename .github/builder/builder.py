@@ -6,7 +6,7 @@ from json import load as json_load
 from dataclasses import dataclass
 from typing import Any
 from urllib.parse import quote as url_quote
-from const import PROFILE_TRANSLATIONS, PROFILE_IGNORE_KEYS, SLICER_PROFILE_DIR, SLICER_DIR, SLICER_REPO, SLICER_BRANCH
+from const import PROFILE_TRANSLATIONS, PROFILE_IGNORE_KEYS, SLICER_PROFILE_DIR, SLICER_DIR, SLICER_REPO, SLICER_BRANCH, PROFILE_VALUE_DEFAULTS
 
 def translate_profile_key(key: str) -> str:
     return PROFILE_TRANSLATIONS.get(key, key)
@@ -60,10 +60,9 @@ class RepoProfile:
         for key, value in self.data.items():
             if key in PROFILE_IGNORE_KEYS:
                 continue
-            if key not in other.data:
-                continue
-            
-            other_value = other.data[key]
+
+            other_value = other.data.get(key, PROFILE_VALUE_DEFAULTS.get(key, [""]))
+
             if value != other_value:
                 res.append(ProfileDiff(key, value, other_value))
         return res
