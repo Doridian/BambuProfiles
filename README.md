@@ -4,9 +4,9 @@
 
 Bambu Studio knows 3 profile types:
 
-1. `filament` profiles, which are for filament, as the name implies
-2. `printer` profiles, these are for machines and nozzles
-3. `process` profiles, these are your quality/strength/print settings
+1. [Filament](filament) profiles, which are for filament, as the name implies
+2. [Printer](printer) profiles, these are for machines and nozzles
+3. [Process](process) profiles, these are your quality/strength/print settings
 
 
 ## How to save a profile
