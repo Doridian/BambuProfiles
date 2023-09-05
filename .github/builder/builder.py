@@ -121,7 +121,7 @@ def format_diff_item(item: Any, key: str) -> str:
     item = item.replace('\r', '').replace('\n', '<br>').strip()
     
     if key.endswith('_gcode'):
-        item = f"```gcode<br>{item}<br>```" 
+        item = f"<pre><code>{item}</code></pre>" 
 
     return item
 
