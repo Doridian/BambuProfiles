@@ -8,9 +8,11 @@ def main() -> None:
 
     for profile_type in get_profile_types():
         view = build_profile_list_view(profile_type)
-        with open(f"./{profile_type}/README.md", "w") as f:
-            f.write(f"# {profile_type.title()} profiles\n\n")
-            f.write(view)
+        with open(f"./{profile_type}/README.md", "wb") as f:
+            f.write(b"# ")
+            f.write(profile_type.title().encode('utf-8'))
+            f.write(b" profiles\n\n")
+            f.write(view.encode('utf-8'))
 
 if __name__ == "__main__":
     main()
