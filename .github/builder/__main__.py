@@ -10,9 +10,9 @@ def main() -> None:
         view = build_profile_list_view(profile_type)
         with open(f"./{profile_type}/README.md", "wb") as f:
             f.write(b"# ")
-            f.write(profile_type.title().encode('utf-8'))
+            f.write(profile_type.title().encode("utf-8"))
             f.write(b" profiles\n\n")
-            f.write(view.encode('utf-8'))
+            f.write(view.encode("utf-8"))
 
 if __name__ == "__main__":
     main()
