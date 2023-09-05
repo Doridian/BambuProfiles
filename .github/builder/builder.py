@@ -118,10 +118,10 @@ def format_diff_item(item: Any, key: str) -> str:
     if not isinstance(item, str):
         item = f"{item}"
 
-    item = item.replace('\r', '').strip()
+    item = item.replace('\r', '').replace('\n', '<br>').strip()
     
     if key.endswith('_gcode'):
-        item = f"```gcode\n{item}\n```" 
+        item = f"```gcode<br>{item}<br>```" 
 
     return item
 
