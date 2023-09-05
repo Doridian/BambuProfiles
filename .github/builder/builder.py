@@ -111,12 +111,22 @@ def compare_profile_to_base(profile: RepoProfile) -> list[ProfileDiff]:
 
     return profile.diff(PROFILE_REGISTRY[profile.type][profile.base])
 
-def format_diff_item(item: Any) -> str:
+def format_diff_item(item: Any, key: str) -> str:
     if isinstance(item, list) and len(item) == 1:
-        return item[0]
+        item = item[0]
+
+    if not isinstance(item, str):
+        item = f"{item}"
+
+    item = item.replace('\r', '').strip()
+    
+    if key.endswith('_gcode'):
+        item = f"```gcode\n{item}\n```" 
+
+    return item
 
 def format_diff(diff: ProfileDiff) -> str:
-    return f"| {translate_profile_key(diff.key)} | {format_diff_item(diff.left)} | {format_diff_item(diff.right)} |"
+    return f"| {translate_profile_key(diff.key)} | {format_diff_item(diff.left, diff.key)} | {format_diff_item(diff.right, diff.key)} |"
 
 def build_profile_view(profile: RepoProfile) -> str:
     diffs = compare_profile_to_base(profile)
