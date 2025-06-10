@@ -1,14 +1,14 @@
 name: Updatd docs
 on:
-  workflow_dispatch:
-  push:
-  pull_request:
+  pull_request: {}
+  schedule:
+    - cron: "4 2 * * *"
 
 permissions:
   contents: write
 
 concurrency:
-  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  group: '${{ github.workflow }} @ ${{ github.head_ref || github.ref }}'
   cancel-in-progress: true
 
 jobs:
@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref }}
       - run: ./.github/builder/__main__.py
       - name: Git Auto Commit
         uses: stefanzweifel/git-auto-commit-action@v5.2.0
