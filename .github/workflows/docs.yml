@@ -1,6 +1,9 @@
 name: Updatd docs
 on:
   pull_request: {}
+  push:
+    branches:
+      - main
   schedule:
     - cron: "4 2 * * *"
 
