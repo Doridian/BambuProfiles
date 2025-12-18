@@ -79,12 +79,19 @@ PROFILE_REGISTRY = {
     "process": {},
 }
 
-def load_profile_dir(dir: str, profile_type: str, local: bool) -> None:
-    for file in listdir(dir):
-        if not file.endswith(".json"):
+IGNORED_FILES = {
+    "filament_id_map.json",
+    "filament_name_map.json",
+    "filaments_color_codes.json",
+}
+
+def load_profile_dir(path: str, profile_type: str, local: bool) -> None:
+    for file in listdir(path):
+        if file in IGNORED_FILES or not file.endswith(".json"):
             continue
 
-        profile = RepoProfile(local, profile_type, dir, file)
+        print(f"Loading profile {path}/{file}")
+        profile = RepoProfile(local, profile_type, path, file)
         if profile.name in PROFILE_REGISTRY[profile_type]:
             raise ValueError(f"Duplicate profile name {profile.name} for type {profile_type}")
         PROFILE_REGISTRY[profile_type][profile.name] = profile
