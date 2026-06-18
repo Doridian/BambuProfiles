@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - run: ./.github/builder/__main__.py
       - name: Git Auto Commit
         uses: stefanzweifel/git-auto-commit-action@v7.1.0
